@@ -152,6 +152,7 @@ client.onMessage((msg)=>{
             // don't do anything here yet!
             winston.verbose("Public message in channel "+obj.channel+": "+obj.message);
         break;
+        case "ERR"://we actually want to read out that error
         default:
             winston.error("unhandled message incoming!" + msg);
     }
