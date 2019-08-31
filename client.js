@@ -32,7 +32,7 @@ var config = {
 };
 var auth = require("./auth.json");
 
-const Fchat = require("lib-fchat/lib/Fchat");
+const Fchat = require("fchat/lib/Fchat"); //This needs to be updated if it is compressed into a single lib
 var client = new Fchat(config);
 client.version="1.0.0";
 

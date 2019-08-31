@@ -2,6 +2,6 @@
 logs
 *.log
 dbs/
-
+node_modules
 auth.json
 OPs.json
