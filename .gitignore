@@ -5,3 +5,4 @@ dbs/
 node_modules
 auth.json
 OPs.json
+*.json
