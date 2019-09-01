@@ -133,10 +133,12 @@ client.getChannels = async function(){
 }
 
 client.sendMessage = async function(recipient, message){
+    client.logChat({"character": recipient, message, "selfauthored": true});//logs own messages to have the threads make sense contextually
     client.send("PRI", {recipient, message});
 };
 
 client.sendChannelMessage = async function(channel, message){
+    client.logChat({channel, message, "character":client.user.character});//logs own outgoing messages
     client.send("MSG", {channel, message});
 };
 

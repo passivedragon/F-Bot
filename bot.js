@@ -12,6 +12,7 @@ require("./consoleinput");
 const OPs = require('./OPs.json');
 
 require("./clientcommands.js");
+require("./chatlogger.js");
 
 
 async function loadCommands(extensiveLogging){
@@ -122,7 +123,8 @@ client.onMessage((msg)=>{
         case "FLN"://don't deal with it for now
             break;
         case "PRI"://private message
-            winston.silly(obj);
+            client.logChat(obj);
+            winston.silly("message from "+obj.character+": "+obj.message);
             if(obj && obj.message.startsWith(client.prefix)){//prefix not variable yet
                 //actually go through the client.command.private set
                 var args =  obj.message.slice(client.prefix.length).split(' ');
@@ -146,7 +148,9 @@ client.onMessage((msg)=>{
             break;
         case "MSG"://public message
             // don't do anything here yet!
+            //TODO: add commands
             winston.verbose("Public message in channel "+obj.channel+": "+obj.message);
+            client.logChat(obj);
         break;
         case "ERR"://we actually want to read out that error
             winston.error("servererror: "+msg);

@@ -7,21 +7,26 @@ var zlib = require('zlib');
 var auth = require('./auth.json');
 
 var ConsoleCommands = { // commands defined just for CLI usage, primarily for debug and development
-  "test1": function (){
+    "clihelp": function (){
+        console.log(this);
+    },
+    "testcli": function (){
         console.log('works...\n fine!');
     },
-  "eval": async function (line, command, args){
+    "restart": function(){
+        client.restart("restarting from cli", 5);
+    },
+    "eval": async function (line, command, args){
         try{
             console.log(eval(line.trim().slice(command.length +1)));
         } catch(err){
             console.log(err);
         }
     },
-  "commands": function (){
+    "commands": function (){
         console.log(client.commands);
     },
-  "commandreload": require('./bot.js').resetcommands,
-  "test": function (line, command, args){
+    "test": function (line, command, args){
 
         var auth = require("./auth.json");
         var fetch = require("node-fetch");
@@ -35,7 +40,7 @@ var ConsoleCommands = { // commands defined just for CLI usage, primarily for de
             .then(res => res.json()) // expecting a json response
             .then(json => console.log(json));
     },
-  "test2": function (){
+    "test2": function (){
         client.api.getProfile("passivedragon").then(o =>{
             console.log(typeof o);
             console.log(o);

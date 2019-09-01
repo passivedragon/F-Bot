@@ -1,3 +1,4 @@
+var {winston, db} = require("../logger.js");
 
 function secondsToHms(d) {
     d = Number(d);
@@ -39,7 +40,11 @@ module.exports = {
                     client.sendMessage(msg.character, "Your snippet contained a forbidden command, so the bot stopped the execution to protect itself.");
                     return;
                 } else {
-                    console.log(eval(snippet));
+                    try{
+                        console.log(eval(snippet));
+                    } catch(err){
+                        client.sendMessage(msg.character, "encountered an error: "+err);
+                    }
                 }
             }
         },
