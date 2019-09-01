@@ -48,24 +48,6 @@ var ConsoleCommands = { // commands defined just for CLI usage, primarily for de
 }
 
 
-// stuff needed to pretent messages came via Discord to use those commands aswell(where possible)
-async function SendMsg(msg){
-  console.log("response: " + msg);
-  return;
-};
-//msg.member.roles
-var msg = {
-  'author':{'username':'server','id':'0000'},
-  // 'member':{'roles':[{'name':'Mitbewohner'}, {'name':'Admin'}, {'name':'Server'}]},
-  'member':{},
-  'guild': {'channels':[], 'id':'0000'},
-  'content':'',//is edited when passed
-  'channel':{'send':SendMsg},
-  'reply':SendMsg
-};
-msg.member.roles = [{name:'Mitbewohner'}, {name:'Admin'}, {name:'Server'}];
-
-
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,

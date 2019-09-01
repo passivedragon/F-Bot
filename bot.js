@@ -100,6 +100,8 @@ client.onMessage((msg)=>{
         case "CDS"://sent when entering a channel, contains the channel description. Should maybe be logged to be accessible later?
         case "RTB"://Someone was added to the bookmarks of this acc
         case "JCH"://Someone joined a channel
+        case "LCH"://someone left a channel
+        case "CKU"://someone (or you) were kicked from a channel
         case "FRL"://list of bookmarked chars
         case "HLO"://null hello message
         case "CON"://total count of online characterss
@@ -112,18 +114,12 @@ client.onMessage((msg)=>{
             break;
         case "VAR": //initial variable set up
             //don't deal with it for now
+            //should read out and add them to the client as stored info
             break;
-        case "LIS":
-            //don't deal with it for now
-            break;
-        case "STA":
-            //don't deal with it for now
-            break;
-        case "NLN":
-            //don't deal with it for now
-            break;
-        case "FLN":
-            //don't deal with it for now
+        case "LIS"://don't deal with it for now
+        case "STA"://don't deal with it for now
+        case "NLN"://don't deal with it for now
+        case "FLN"://don't deal with it for now
             break;
         case "PRI"://private message
             winston.silly(obj);
@@ -153,6 +149,8 @@ client.onMessage((msg)=>{
             winston.verbose("Public message in channel "+obj.channel+": "+obj.message);
         break;
         case "ERR"://we actually want to read out that error
+            winston.error("servererror: "+msg);
+            break;
         default:
             winston.error("unhandled message incoming!" + msg);
     }
