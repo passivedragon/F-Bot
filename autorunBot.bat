@@ -1,3 +1,5 @@
+call npm install
+
 echo off
 cls
 echo %CD%
